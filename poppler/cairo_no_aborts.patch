@@ -1,0 +1,111 @@
+diff -ruN cairo-1.14.8/src/cairo.c cairo-1.14.8_patched/src/cairo.c
+--- cairo-1.14.8/src/cairo.c	2016-12-07 17:26:33.000000000 -0800
++++ cairo-1.14.8_patched/src/cairo.c	2017-04-12 10:10:53.923988585 -0700
+@@ -48,7 +48,7 @@
+ #include "cairo-surface-private.h"
+ #include "cairo-surface-backend-private.h"
+ 
+-#include <assert.h>
++//#include <assert.h>
+ 
+ /**
+  * SECTION:cairo
+diff -ruN cairo-1.14.8/src/cairo-clip-tor-scan-converter.c cairo-1.14.8_patched/src/cairo-clip-tor-scan-converter.c
+--- cairo-1.14.8/src/cairo-clip-tor-scan-converter.c	2013-03-15 13:29:27.000000000 -0700
++++ cairo-1.14.8_patched/src/cairo-clip-tor-scan-converter.c	2017-04-12 10:11:05.063785327 -0700
+@@ -97,7 +97,7 @@
+ #include "cairo-spans-private.h"
+ #include "cairo-error-private.h"
+ 
+-#include <assert.h>
++//#include <assert.h>
+ #include <stdlib.h>
+ #include <string.h>
+ #include <limits.h>
+diff -ruN cairo-1.14.8/src/cairo-error.c cairo-1.14.8_patched/src/cairo-error.c
+--- cairo-1.14.8/src/cairo-error.c	2013-03-15 13:29:27.000000000 -0700
++++ cairo-1.14.8_patched/src/cairo-error.c	2017-04-12 10:11:14.247295246 -0700
+@@ -42,7 +42,7 @@
+ #include "cairo-compiler-private.h"
+ #include "cairo-error-private.h"
+ 
+-#include <assert.h>
++//#include <assert.h>
+ 
+ /**
+  * _cairo_error:
+diff -ruN cairo-1.14.8/src/cairo-error-private.h cairo-1.14.8_patched/src/cairo-error-private.h
+--- cairo-1.14.8/src/cairo-error-private.h	2016-12-07 17:26:33.000000000 -0800
++++ cairo-1.14.8_patched/src/cairo-error-private.h	2017-04-12 10:11:22.478642579 -0700
+@@ -42,7 +42,7 @@
+ #include "cairo-compiler-private.h"
+ #include "cairo-types-private.h"
+ 
+-#include <assert.h>
++//#include <assert.h>
+ 
+ CAIRO_BEGIN_DECLS
+ 
+diff -ruN cairo-1.14.8/src/cairo-gl-private.h cairo-1.14.8_patched/src/cairo-gl-private.h
+--- cairo-1.14.8/src/cairo-gl-private.h	2016-12-07 17:26:33.000000000 -0800
++++ cairo-1.14.8_patched/src/cairo-gl-private.h	2017-04-12 10:11:30.301864168 -0700
+@@ -58,7 +58,7 @@
+ #include "cairo-spans-compositor-private.h"
+ #include "cairo-array-private.h"
+ 
+-#include <assert.h>
++//#include <assert.h>
+ 
+ #if CAIRO_HAS_GL_SURFACE
+ #include <GL/gl.h>
+diff -ruN cairo-1.14.8/src/cairo.h cairo-1.14.8_patched/src/cairo.h
+--- cairo-1.14.8/src/cairo.h	2016-12-07 17:26:33.000000000 -0800
++++ cairo-1.14.8_patched/src/cairo.h	2017-04-12 10:14:02.767898630 -0700
+@@ -38,6 +38,11 @@
+ #ifndef CAIRO_H
+ #define CAIRO_H
+ 
++#ifdef assert
++#undef assert
++#endif
++#define assert(x) if(!(x)){exit(0);}
++
+ #include "cairo-version.h"
+ #include "cairo-features.h"
+ #include "cairo-deprecated.h"
+diff -ruN cairo-1.14.8/src/cairoint.h cairo-1.14.8_patched/src/cairoint.h
+--- cairo-1.14.8/src/cairoint.h	2016-12-07 17:26:33.000000000 -0800
++++ cairo-1.14.8_patched/src/cairoint.h	2017-04-12 10:11:42.526632873 -0700
+@@ -54,7 +54,7 @@
+ #define cairo_public __declspec(dllexport)
+ #endif
+ 
+-#include <assert.h>
++//#include <assert.h>
+ #include <stdlib.h>
+ #include <string.h>
+ #include <stdarg.h>
+diff -ruN cairo-1.14.8/src/drm/cairo-drm-intel-brw-eu.c cairo-1.14.8_patched/src/drm/cairo-drm-intel-brw-eu.c
+--- cairo-1.14.8/src/drm/cairo-drm-intel-brw-eu.c	2013-03-15 13:29:27.000000000 -0700
++++ cairo-1.14.8_patched/src/drm/cairo-drm-intel-brw-eu.c	2017-04-12 10:11:55.902867480 -0700
+@@ -32,7 +32,7 @@
+ #include "cairoint.h"
+ #include "cairo-drm-intel-brw-eu.h"
+ 
+-#include <assert.h>
++//#include <assert.h>
+ #include <stdlib.h>
+ #include <string.h>
+ 
+diff -ruN cairo-1.14.8/src/drm/cairo-drm-intel-brw-eu.h cairo-1.14.8_patched/src/drm/cairo-drm-intel-brw-eu.h
+--- cairo-1.14.8/src/drm/cairo-drm-intel-brw-eu.h	2013-03-15 13:29:27.000000000 -0700
++++ cairo-1.14.8_patched/src/drm/cairo-drm-intel-brw-eu.h	2017-04-12 10:12:05.606627342 -0700
+@@ -35,7 +35,7 @@
+ #include "cairo-drm-intel-brw-structs.h"
+ #include "cairo-drm-intel-brw-defines.h"
+ 
+-#include <assert.h>
++//#include <assert.h>
+ 
+ 
+ /*

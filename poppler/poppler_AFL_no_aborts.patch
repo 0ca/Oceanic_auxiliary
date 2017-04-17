@@ -1,6 +1,6 @@
-iff -ruN poppler-latest/goo/GooString.cc poppler-latest-patch/goo/GooString.cc
---- poppler-latest/goo/GooString.cc	2017-04-12 11:04:10.017515878 -0700
-+++ poppler-latest-patch/goo/GooString.cc	2017-04-12 11:05:00.246983815 -0700
+diff -bur poppler-latest/goo/GooString.cc poppler-latest-patched/goo/GooString.cc
+--- poppler-latest/goo/GooString.cc	2017-04-17 15:04:22.146641581 -0700
++++ poppler-latest-patched/goo/GooString.cc	2017-04-17 15:05:47.023906070 -0700
 @@ -42,7 +42,7 @@
  #include <stddef.h>
  #include <string.h>
@@ -10,9 +10,9 @@ iff -ruN poppler-latest/goo/GooString.cc poppler-latest-patch/goo/GooString.cc
  #include <math.h>
  #include "gmem.h"
  #include "GooString.h"
-diff -ruN poppler-latest/poppler/Annot.cc poppler-latest-patch/poppler/Annot.cc
---- poppler-latest/poppler/Annot.cc	2017-04-12 11:04:10.021515677 -0700
-+++ poppler-latest-patch/poppler/Annot.cc	2017-04-12 11:07:20.591831116 -0700
+diff -bur poppler-latest/poppler/Annot.cc poppler-latest-patched/poppler/Annot.cc
+--- poppler-latest/poppler/Annot.cc	2017-04-17 15:04:22.150641452 -0700
++++ poppler-latest-patched/poppler/Annot.cc	2017-04-17 15:05:47.027905938 -0700
 @@ -49,7 +49,7 @@
  
  #include <stdlib.h>
@@ -22,9 +22,39 @@ diff -ruN poppler-latest/poppler/Annot.cc poppler-latest-patch/poppler/Annot.cc
  #include "goo/gmem.h"
  #include "goo/gstrtod.h"
  #include "GooList.h"
-diff -ruN poppler-latest/poppler/CairoOutputDev.cc poppler-latest-patch/poppler/CairoOutputDev.cc
---- poppler-latest/poppler/CairoOutputDev.cc	2017-04-12 11:04:10.021515677 -0700
-+++ poppler-latest-patch/poppler/CairoOutputDev.cc	2017-04-12 11:05:43.780739668 -0700
+diff -bur poppler-latest/poppler/Array.cc poppler-latest-patched/poppler/Array.cc
+--- poppler-latest/poppler/Array.cc	2017-04-17 15:04:22.150641452 -0700
++++ poppler-latest-patched/poppler/Array.cc	2017-04-17 15:08:06.467379141 -0700
+@@ -105,7 +105,7 @@
+   arrayLocker();
+   if (i < 0 || i >= length) {
+ #ifdef DEBUG_MEM
+-    abort();
++    exit(-1);
+ #else
+     return;
+ #endif
+@@ -117,7 +117,7 @@
+ Object *Array::get(int i, Object *obj, int recursion) {
+   if (i < 0 || i >= length) {
+ #ifdef DEBUG_MEM
+-    abort();
++    exit(-1);
+ #else
+     return obj->initNull();
+ #endif
+@@ -128,7 +128,7 @@
+ Object *Array::getNF(int i, Object *obj) {
+   if (i < 0 || i >= length) {
+ #ifdef DEBUG_MEM
+-    abort();
++    exit(-1);
+ #else
+     return obj->initNull();
+ #endif
+diff -bur poppler-latest/poppler/CairoOutputDev.cc poppler-latest-patched/poppler/CairoOutputDev.cc
+--- poppler-latest/poppler/CairoOutputDev.cc	2017-04-17 15:04:22.150641452 -0700
++++ poppler-latest-patched/poppler/CairoOutputDev.cc	2017-04-17 15:05:47.027905938 -0700
 @@ -43,7 +43,7 @@
  
  #include <string.h>
@@ -34,9 +64,9 @@ diff -ruN poppler-latest/poppler/CairoOutputDev.cc poppler-latest-patch/poppler/
  #include <cairo.h>
  
  #include "goo/gfile.h"
-diff -ruN poppler-latest/poppler/CairoRescaleBox.cc poppler-latest-patch/poppler/CairoRescaleBox.cc
---- poppler-latest/poppler/CairoRescaleBox.cc	2017-04-12 11:04:10.025515477 -0700
-+++ poppler-latest-patch/poppler/CairoRescaleBox.cc	2017-04-12 11:06:51.921241333 -0700
+diff -bur poppler-latest/poppler/CairoRescaleBox.cc poppler-latest-patched/poppler/CairoRescaleBox.cc
+--- poppler-latest/poppler/CairoRescaleBox.cc	2017-04-17 15:04:22.158641196 -0700
++++ poppler-latest-patched/poppler/CairoRescaleBox.cc	2017-04-17 15:05:47.027905938 -0700
 @@ -47,7 +47,7 @@
  
  #include <stdint.h>
@@ -46,9 +76,9 @@ diff -ruN poppler-latest/poppler/CairoRescaleBox.cc poppler-latest-patch/poppler
  #include <stdlib.h>
  #include <math.h>
  #include "goo/gmem.h"
-diff -ruN poppler-latest/poppler/GfxState.h poppler-latest-patch/poppler/GfxState.h
---- poppler-latest/poppler/GfxState.h	2017-04-12 11:04:10.029515275 -0700
-+++ poppler-latest-patch/poppler/GfxState.h	2017-04-12 11:06:24.194605628 -0700
+diff -bur poppler-latest/poppler/GfxState.h poppler-latest-patched/poppler/GfxState.h
+--- poppler-latest/poppler/GfxState.h	2017-04-17 15:04:22.158641196 -0700
++++ poppler-latest-patched/poppler/GfxState.h	2017-04-17 15:05:47.027905938 -0700
 @@ -42,7 +42,7 @@
  #include "Object.h"
  #include "Function.h"
@@ -58,9 +88,9 @@ diff -ruN poppler-latest/poppler/GfxState.h poppler-latest-patch/poppler/GfxStat
  #include <map>
  
  class Array;
-diff -ruN poppler-latest/poppler/GlobalParams.h poppler-latest-patch/poppler/GlobalParams.h
---- poppler-latest/poppler/GlobalParams.h	2017-04-12 11:04:10.029515275 -0700
-+++ poppler-latest-patch/poppler/GlobalParams.h	2017-04-12 11:06:10.027350265 -0700
+diff -bur poppler-latest/poppler/GlobalParams.h poppler-latest-patched/poppler/GlobalParams.h
+--- poppler-latest/poppler/GlobalParams.h	2017-04-17 15:04:22.162641069 -0700
++++ poppler-latest-patched/poppler/GlobalParams.h	2017-04-17 15:05:47.027905938 -0700
 @@ -39,7 +39,7 @@
  #pragma interface
  #endif
@@ -70,9 +100,9 @@ diff -ruN poppler-latest/poppler/GlobalParams.h poppler-latest-patch/poppler/Glo
  #include "poppler-config.h"
  #include <stdio.h>
  #include "goo/gtypes.h"
-diff -ruN poppler-latest/poppler/GlobalParamsWin.cc poppler-latest-patch/poppler/GlobalParamsWin.cc
---- poppler-latest/poppler/GlobalParamsWin.cc	2017-04-12 11:04:10.029515275 -0700
-+++ poppler-latest-patch/poppler/GlobalParamsWin.cc	2017-04-12 11:06:38.353897319 -0700
+diff -bur poppler-latest/poppler/GlobalParamsWin.cc poppler-latest-patched/poppler/GlobalParamsWin.cc
+--- poppler-latest/poppler/GlobalParamsWin.cc	2017-04-17 15:04:22.162641069 -0700
++++ poppler-latest-patched/poppler/GlobalParamsWin.cc	2017-04-17 15:05:47.027905938 -0700
 @@ -30,7 +30,7 @@
  #include <string.h>
  #include <stdio.h>
@@ -82,9 +112,37 @@ diff -ruN poppler-latest/poppler/GlobalParamsWin.cc poppler-latest-patch/poppler
  
  #include "goo/gmem.h"
  #include "goo/GooString.h"
-diff -ruN poppler-latest/poppler/PageLabelInfo.cc poppler-latest-patch/poppler/PageLabelInfo.cc
---- poppler-latest/poppler/PageLabelInfo.cc	2017-04-12 11:04:10.037514873 -0700
-+++ poppler-latest-patch/poppler/PageLabelInfo.cc	2017-04-12 11:05:33.477289655 -0700
+diff -bur poppler-latest/poppler/Object.h poppler-latest-patched/poppler/Object.h
+--- poppler-latest/poppler/Object.h	2017-04-17 15:04:22.162641069 -0700
++++ poppler-latest-patched/poppler/Object.h	2017-04-17 15:08:47.562058012 -0700
+@@ -48,21 +48,21 @@
+     if (unlikely(type != wanted_type)) { \
+         error(errInternal, 0, "Call to Object where the object was type {0:d}, " \
+                  "not the expected type {1:d}", type, wanted_type); \
+-        abort(); \
++        exit(-1); \
+     }
+ 
+ #define OBJECT_2TYPES_CHECK(wanted_type1, wanted_type2) \
+     if (unlikely(type != wanted_type1) && unlikely(type != wanted_type2)) { \
+         error(errInternal, 0, "Call to Object where the object was type {0:d}, " \
+ 	      "not the expected type {1:d} or {2:d}", type, wanted_type1, wanted_type2); \
+-        abort(); \
++        exit(-1); \
+     }
+ 
+ #define OBJECT_3TYPES_CHECK(wanted_type1, wanted_type2, wanted_type3)	\
+     if (unlikely(type != wanted_type1) && unlikely(type != wanted_type2) && unlikely(type != wanted_type3)) { \
+         error(errInternal, 0, "Call to Object where the object was type {0:d}, " \
+ 	      "not the expected type {1:d}, {2:d} or {3:d}", type, wanted_type1, wanted_type2, wanted_type3); \
+-        abort(); \
++        exit(-1); \
+     }
+ 
+ class XRef;
+diff -bur poppler-latest/poppler/PageLabelInfo.cc poppler-latest-patched/poppler/PageLabelInfo.cc
+--- poppler-latest/poppler/PageLabelInfo.cc	2017-04-17 15:04:22.166640941 -0700
++++ poppler-latest-patched/poppler/PageLabelInfo.cc	2017-04-17 15:05:47.027905938 -0700
 @@ -16,7 +16,7 @@
  #include <limits.h>
  #include <stdlib.h>
@@ -94,9 +152,9 @@ diff -ruN poppler-latest/poppler/PageLabelInfo.cc poppler-latest-patch/poppler/P
  
  #include "PageLabelInfo.h"
  #include "PageLabelInfo_p.h"
-diff -ruN poppler-latest/poppler/PageLabelInfo.h poppler-latest-patch/poppler/PageLabelInfo.h
---- poppler-latest/poppler/PageLabelInfo.h	2017-04-12 11:04:10.037514873 -0700
-+++ poppler-latest-patch/poppler/PageLabelInfo.h	2017-04-12 11:05:22.197870338 -0700
+diff -bur poppler-latest/poppler/PageLabelInfo.h poppler-latest-patched/poppler/PageLabelInfo.h
+--- poppler-latest/poppler/PageLabelInfo.h	2017-04-17 15:04:22.166640941 -0700
++++ poppler-latest-patched/poppler/PageLabelInfo.h	2017-04-17 15:05:47.027905938 -0700
 @@ -14,7 +14,7 @@
  #include <stdlib.h>
  #include <stdio.h>
@@ -106,9 +164,9 @@ diff -ruN poppler-latest/poppler/PageLabelInfo.h poppler-latest-patch/poppler/Pa
  
  #include "goo/gtypes.h"
  #include "goo/GooList.h"
-diff -ruN poppler-latest/poppler/poppler-config.h.in poppler-latest-patch/poppler/poppler-config.h.in
---- poppler-latest/poppler/poppler-config.h.in	2017-04-12 11:04:10.045514470 -0700
-+++ poppler-latest-patch/poppler/poppler-config.h.in	2017-04-12 11:15:36.403857548 -0700
+diff -bur poppler-latest/poppler/poppler-config.h.in poppler-latest-patched/poppler/poppler-config.h.in
+--- poppler-latest/poppler/poppler-config.h.in	2017-04-17 15:04:22.166640941 -0700
++++ poppler-latest-patched/poppler/poppler-config.h.in	2017-04-17 15:05:47.027905938 -0700
 @@ -25,6 +25,8 @@
  #ifndef POPPLER_CONFIG_H
  #define POPPLER_CONFIG_H
@@ -118,9 +176,9 @@ diff -ruN poppler-latest/poppler/poppler-config.h.in poppler-latest-patch/popple
  #include <stdio.h>
  
  // We duplicate some of the config.h #define's here since they are
-diff -ruN poppler-latest/poppler/StructElement.cc poppler-latest-patch/poppler/StructElement.cc
---- poppler-latest/poppler/StructElement.cc	2017-04-12 11:04:10.037514873 -0700
-+++ poppler-latest-patch/poppler/StructElement.cc	2017-04-12 11:05:11.622407479 -0700
+diff -bur poppler-latest/poppler/StructElement.cc poppler-latest-patched/poppler/StructElement.cc
+--- poppler-latest/poppler/StructElement.cc	2017-04-17 15:04:22.166640941 -0700
++++ poppler-latest-patched/poppler/StructElement.cc	2017-04-17 15:05:47.027905938 -0700
 @@ -22,7 +22,7 @@
  #include "PDFDoc.h"
  #include "Dict.h"
@@ -130,9 +188,9 @@ diff -ruN poppler-latest/poppler/StructElement.cc poppler-latest-patch/poppler/S
  
  class GfxState;
  
-diff -ruN poppler-latest/poppler/StructTreeRoot.cc poppler-latest-patch/poppler/StructTreeRoot.cc
---- poppler-latest/poppler/StructTreeRoot.cc	2017-04-12 11:04:10.037514873 -0700
-+++ poppler-latest-patch/poppler/StructTreeRoot.cc	2017-04-12 11:05:58.227973073 -0700
+diff -bur poppler-latest/poppler/StructTreeRoot.cc poppler-latest-patched/poppler/StructTreeRoot.cc
+--- poppler-latest/poppler/StructTreeRoot.cc	2017-04-17 15:04:22.166640941 -0700
++++ poppler-latest-patched/poppler/StructTreeRoot.cc	2017-04-17 15:05:47.027905938 -0700
 @@ -20,7 +20,7 @@
  #include "Object.h"
  #include "Dict.h"
@@ -142,9 +200,9 @@ diff -ruN poppler-latest/poppler/StructTreeRoot.cc poppler-latest-patch/poppler/
  
  
  StructTreeRoot::StructTreeRoot(PDFDoc *docA, Dict *structTreeRootDict):
-diff -ruN poppler-latest/splash/Splash.cc poppler-latest-patch/splash/Splash.cc
---- poppler-latest/splash/Splash.cc	2017-04-12 11:04:10.069513262 -0700
-+++ poppler-latest-patch/splash/Splash.cc	2017-04-12 11:07:31.927270413 -0700
+diff -bur poppler-latest/splash/Splash.cc poppler-latest-patched/splash/Splash.cc
+--- poppler-latest/splash/Splash.cc	2017-04-17 15:04:22.178640558 -0700
++++ poppler-latest-patched/splash/Splash.cc	2017-04-17 15:05:47.027905938 -0700
 @@ -34,7 +34,7 @@
  #include <stdlib.h>
  #include <string.h>
@@ -154,9 +212,9 @@ diff -ruN poppler-latest/splash/Splash.cc poppler-latest-patch/splash/Splash.cc
  #include <math.h>
  #include "goo/gmem.h"
  #include "goo/GooLikely.h"
-diff -ruN poppler-latest/test/perf-test.cc poppler-latest-patch/test/perf-test.cc
---- poppler-latest/test/perf-test.cc	2017-04-12 11:04:10.073513062 -0700
-+++ poppler-latest-patch/test/perf-test.cc	2017-04-12 11:07:55.286171100 -0700
+diff -bur poppler-latest/test/perf-test.cc poppler-latest-patched/test/perf-test.cc
+--- poppler-latest/test/perf-test.cc	2017-04-17 15:04:22.182640430 -0700
++++ poppler-latest-patched/test/perf-test.cc	2017-04-17 15:05:47.027905938 -0700
 @@ -34,7 +34,7 @@
  // Not enabled by default.
  //#define COPY_FILE 1
@@ -166,9 +224,9 @@ diff -ruN poppler-latest/test/perf-test.cc poppler-latest-patch/test/perf-test.c
  #include <stdio.h>
  #include <stdarg.h>
  #include <ctype.h>
-diff -ruN poppler-latest/test/perf-test-preview-win.cc poppler-latest-patch/test/perf-test-preview-win.cc
---- poppler-latest/test/perf-test-preview-win.cc	2017-04-12 11:04:10.073513062 -0700
-+++ poppler-latest-patch/test/perf-test-preview-win.cc	2017-04-12 11:07:44.406687356 -0700
+diff -bur poppler-latest/test/perf-test-preview-win.cc poppler-latest-patched/test/perf-test-preview-win.cc
+--- poppler-latest/test/perf-test-preview-win.cc	2017-04-17 15:04:22.182640430 -0700
++++ poppler-latest-patched/test/perf-test-preview-win.cc	2017-04-17 15:05:47.031905805 -0700
 @@ -4,7 +4,7 @@
  /* This is a preview support for perf-test for Windows */
  
@@ -178,9 +236,9 @@ diff -ruN poppler-latest/test/perf-test-preview-win.cc poppler-latest-patch/test
  
  #include "SplashBitmap.h"
  
-diff -ruN poppler-latest/utils/pdftocairo.cc poppler-latest-patch/utils/pdftocairo.cc
---- poppler-latest/utils/pdftocairo.cc	2017-04-12 11:04:10.077512860 -0700
-+++ poppler-latest-patch/utils/pdftocairo.cc	2017-04-12 11:18:19.059986457 -0700
+diff -bur poppler-latest/utils/pdftocairo.cc poppler-latest-patched/utils/pdftocairo.cc
+--- poppler-latest/utils/pdftocairo.cc	2017-04-17 15:04:22.182640430 -0700
++++ poppler-latest-patched/utils/pdftocairo.cc	2017-04-17 15:05:47.031905805 -0700
 @@ -868,363 +868,56 @@
    }
  }
@@ -266,48 +324,31 @@ diff -ruN poppler-latest/utils/pdftocairo.cc poppler-latest-patch/utils/pdftocai
 -    checkInvalidImageOption(noShrink, "-noshrink");
 -    checkInvalidImageOption(noCenter, "-nocenter");
 -    checkInvalidImageOption(duplex, "-duplex");
-+void do_stuff(char * filename){
-+//  puts("starting do_stuff");
-+  double pg_w, pg_h, output_w, output_h;
-+  GooString *outputFileName = new GooString("out.svg");
-+  GooString * fileName = new GooString(filename);
-+  PDFDoc * doc = PDFDocFactory().createPDFDoc(*fileName, NULL, NULL);
-+  if (!doc->isOk()) {
-+    exit(1); //probably the pdf requires password and it doesn't have it
-   }
-+  CairoOutputDev * cairoOut = new CairoOutputDev();
-+  cairoOut->startDoc(doc);
- 
+-  }
+-
 -  if (printing)
 -    useCropBox = !noCrop;
-+  pg_w = doc->getPageMediaWidth(1);
-+  pg_h = doc->getPageMediaHeight(1);
- 
+-
 -  if (icc.getCString()[0] && !png) {
 -    fprintf(stderr, "Error: -icc may only be used with png output.\n");
 -    exit(99);
 -  }
-+  getOutputSize(pg_w, pg_h, &output_w, &output_h);
- 
+-
 -  if (antialias.getLength() > 0) {
 -    if (!parseAntialiasOption(&antialias, &antialiasEnum))
 -      exit(99);
 -  }
- 
+-
 -  if (transp && !(png || tiff)) {
 -    fprintf(stderr, "Error: -transp may only be used with png or tiff output.\n");
 -    exit(99);
 -  }
-+  beginDocument(fileName, outputFileName, output_w, output_h);
-+  beginPage(&output_w, &output_h);
-+  renderPage(doc, cairoOut, 1, pg_w, pg_h, output_w, output_h);
- 
+-
 -  if (mono && gray) {
 -    fprintf(stderr, "Error: -mono and -gray may not be used together.\n");
 -    exit(99);
 -  }
-+  cairo_surface_show_page(surface); //equivalent to endPage(imageFileName);
- 
+-
 -  if (mono && !(png || tiff)) {
 -    fprintf(stderr, "Error: -mono may only be used with png or tiff output.\n");
 -    exit(99);
@@ -329,20 +370,12 @@ diff -ruN poppler-latest/utils/pdftocairo.cc poppler-latest-patch/utils/pdftocai
 -    fprintf(stderr, "Error: page size options may not be used with eps output.\n");
 -    exit(99);
 -  }
-+  endDocument();
- 
+-
 -  if ((paperWidth > 0 && paperHeight <= 0) || (paperWidth <= 0 && paperHeight > 0)) {
 -    fprintf(stderr, "Error: both -paperw and -paperh must be specified.\n");
 -    exit(99);
 -  }
-+// clean
-+  delete cairoOut;
-+  delete doc;
-+  delete outputFileName;
-+  delete fileName;
-+ // puts("starting do_stuff");
-+}
- 
+-
 -  if (paperSize[0]) {
 -    if (origPageSizes) {
 -      fprintf(stderr, "Error: -origpagesizes and -paper may not be used together.\n");
@@ -357,32 +390,21 @@ diff -ruN poppler-latest/utils/pdftocairo.cc poppler-latest-patch/utils/pdftocai
 -    usePDFPageSize = gTrue;
 -  else
 -    usePDFPageSize = gFalse;
- 
+-
 -  if (printdlg)
 -    printToWin32 = gTrue;
-+int main(int argc, char *argv[]) {
-+  svg=1;
-+  printing = gTrue;
-+  firstPage = lastPage = 1;
-+  useCropBox = !noCrop;
-+  usePDFPageSize = gTrue;
- 
-   globalParams = new GlobalParams();
+-
+-  globalParams = new GlobalParams();
 -  if (quiet) {
 -    globalParams->setErrQuiet(quiet);
 -  }
- 
+-
 -  // open PDF file
 -  if (ownerPassword[0]) {
 -    ownerPW = new GooString(ownerPassword);
 -  } else {
 -    ownerPW = NULL;
-+#ifdef __AFL_HAVE_MANUAL_CONTROL
-+  while (__AFL_LOOP(1000)) {
-+ #endif
-+    do_stuff(argv[1]);
-+#ifdef __AFL_HAVE_MANUAL_CONTROL
-   }
+-  }
 -  if (userPassword[0]) {
 -    userPW = new GooString(userPassword);
 -  } else {
@@ -430,7 +452,13 @@ diff -ruN poppler-latest/utils/pdftocairo.cc poppler-latest-patch/utils/pdftocai
 -#endif
 -
 -  doc = PDFDocFactory().createPDFDoc(*fileName, ownerPW, userPW);
--  if (!doc->isOk()) {
++void do_stuff(char * filename){
++//  puts("starting do_stuff");
++  double pg_w, pg_h, output_w, output_h;
++  GooString *outputFileName = new GooString("out.svg");
++  GooString * fileName = new GooString(filename);
++  PDFDoc * doc = PDFDocFactory().createPDFDoc(*fileName, NULL, NULL);
+   if (!doc->isOk()) {
 -    fprintf(stderr, "Error opening PDF file.\n");
 -    exit(1);
 -  }
@@ -460,7 +488,8 @@ diff -ruN poppler-latest/utils/pdftocairo.cc poppler-latest-patch/utils/pdftocai
 -  if (eps && firstPage != lastPage) {
 -    fprintf(stderr, "EPS files can only contain one page.\n");
 -    exit(99);
--  }
++    exit(1); //probably the pdf requires password and it doesn't have it
+   }
 -
 -  if (singleFile && firstPage < lastPage) {
 -    if (!quiet) {
@@ -494,7 +523,8 @@ diff -ruN poppler-latest/utils/pdftocairo.cc poppler-latest-patch/utils/pdftocai
 -    firstPage++;
 -
 -  cairoOut = new CairoOutputDev();
--  cairoOut->startDoc(doc);
++  CairoOutputDev * cairoOut = new CairoOutputDev();
+   cairoOut->startDoc(doc);
 -  if (sz != 0)
 -    crop_w = crop_h = sz;
 -  pg_num_len = numberOfCharacters(doc->getNumPages());
@@ -508,14 +538,16 @@ diff -ruN poppler-latest/utils/pdftocairo.cc poppler-latest-patch/utils/pdftocai
 -      pg_w = doc->getPageMediaWidth(pg);
 -      pg_h = doc->getPageMediaHeight(pg);
 -    }
--
+ 
 -    if (printing && pg == firstPage) {
 -      if (paperWidth < 0 || paperHeight < 0) {
 -	paperWidth = (int)ceil(pg_w);
 -	paperHeight = (int)ceil(pg_h);
 -      }
 -    }
--
++  pg_w = doc->getPageMediaWidth(1);
++  pg_h = doc->getPageMediaHeight(1);
+ 
 -    if ((doc->getPageRotate(pg) == 90) || (doc->getPageRotate(pg) == 270)) {
 -      tmp = pg_w;
 -      pg_w = pg_h;
@@ -542,26 +574,32 @@ diff -ruN poppler-latest/utils/pdftocairo.cc poppler-latest-patch/utils/pdftocai
 -    }
 -    if (!printing)
 -      imageFileName = getImageFileName(outputFileName, pg_num_len, pg);
--    getOutputSize(pg_w, pg_h, &output_w, &output_h);
--
+     getOutputSize(pg_w, pg_h, &output_w, &output_h);
+ 
 -    if (pg == firstPage)
--      beginDocument(fileName, outputFileName, output_w, output_h);
--    beginPage(&output_w, &output_h);
++
+       beginDocument(fileName, outputFileName, output_w, output_h);
+     beginPage(&output_w, &output_h);
 -    renderPage(doc, cairoOut, pg, pg_w, pg_h, output_w, output_h);
 -    endPage(imageFileName);
 -  }
--  endDocument();
--
++  renderPage(doc, cairoOut, 1, pg_w, pg_h, output_w, output_h);
++
++  cairo_surface_show_page(surface); //equivalent to endPage(imageFileName);
++
+   endDocument();
+ 
 -  // clean up
--  delete cairoOut;
--  delete doc;
++// clean
+   delete cairoOut;
+   delete doc;
 -  delete globalParams;
 -  if (fileName)
 -    delete fileName;
 -  if (outputName)
 -    delete outputName;
 -  if (outputFileName)
--    delete outputFileName;
+     delete outputFileName;
 -  if (imageFileName)
 -    delete imageFileName;
 -  if (ownerPW)
@@ -573,11 +611,30 @@ diff -ruN poppler-latest/utils/pdftocairo.cc poppler-latest-patch/utils/pdftocai
 -  cmsCloseProfile(profile);
 -  if (icc_data)
 -    gfree(icc_data);
- #endif
--
+-#endif
++  delete fileName;
++ // puts("starting do_stuff");
++}
+ 
 -  // check for memory leaks
 -  Object::memCheck(stderr);
 -  gMemReport(stderr);
--
+ 
++int main(int argc, char *argv[]) {
++  svg=1;
++  printing = gTrue;
++  firstPage = lastPage = 1;
++  useCropBox = !noCrop;
++  usePDFPageSize = gTrue;
++
++  globalParams = new GlobalParams();
++
++#ifdef __AFL_HAVE_MANUAL_CONTROL
++  while (__AFL_LOOP(1000)) {
++ #endif
++    do_stuff(argv[1]);
++#ifdef __AFL_HAVE_MANUAL_CONTROL
++  }
++#endif
    return 0;
  }

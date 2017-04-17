@@ -1,0 +1,237 @@
+diff -bur poppler-latest/goo/GooString.cc poppler-latest-patched/goo/GooString.cc
+--- poppler-latest/goo/GooString.cc	2017-04-17 15:04:22.146641581 -0700
++++ poppler-latest-patched/goo/GooString.cc	2017-04-17 15:05:47.023906070 -0700
+@@ -42,7 +42,7 @@
+ #include <stddef.h>
+ #include <string.h>
+ #include <ctype.h>
+-#include <assert.h>
++//#include <assert.h>
+ #include <math.h>
+ #include "gmem.h"
+ #include "GooString.h"
+diff -bur poppler-latest/poppler/Annot.cc poppler-latest-patched/poppler/Annot.cc
+--- poppler-latest/poppler/Annot.cc	2017-04-17 15:04:22.150641452 -0700
++++ poppler-latest-patched/poppler/Annot.cc	2017-04-17 15:05:47.027905938 -0700
+@@ -49,7 +49,7 @@
+ 
+ #include <stdlib.h>
+ #include <math.h>
+-#include <assert.h>
++//#include <assert.h>
+ #include "goo/gmem.h"
+ #include "goo/gstrtod.h"
+ #include "GooList.h"
+diff -bur poppler-latest/poppler/Array.cc poppler-latest-patched/poppler/Array.cc
+--- poppler-latest/poppler/Array.cc	2017-04-17 15:04:22.150641452 -0700
++++ poppler-latest-patched/poppler/Array.cc	2017-04-17 15:08:06.467379141 -0700
+@@ -105,7 +105,7 @@
+   arrayLocker();
+   if (i < 0 || i >= length) {
+ #ifdef DEBUG_MEM
+-    abort();
++    exit(-1);
+ #else
+     return;
+ #endif
+@@ -117,7 +117,7 @@
+ Object *Array::get(int i, Object *obj, int recursion) {
+   if (i < 0 || i >= length) {
+ #ifdef DEBUG_MEM
+-    abort();
++    exit(-1);
+ #else
+     return obj->initNull();
+ #endif
+@@ -128,7 +128,7 @@
+ Object *Array::getNF(int i, Object *obj) {
+   if (i < 0 || i >= length) {
+ #ifdef DEBUG_MEM
+-    abort();
++    exit(-1);
+ #else
+     return obj->initNull();
+ #endif
+diff -bur poppler-latest/poppler/CairoOutputDev.cc poppler-latest-patched/poppler/CairoOutputDev.cc
+--- poppler-latest/poppler/CairoOutputDev.cc	2017-04-17 15:04:22.150641452 -0700
++++ poppler-latest-patched/poppler/CairoOutputDev.cc	2017-04-17 15:05:47.027905938 -0700
+@@ -43,7 +43,7 @@
+ 
+ #include <string.h>
+ #include <math.h>
+-#include <assert.h>
++//#include <assert.h>
+ #include <cairo.h>
+ 
+ #include "goo/gfile.h"
+diff -bur poppler-latest/poppler/CairoRescaleBox.cc poppler-latest-patched/poppler/CairoRescaleBox.cc
+--- poppler-latest/poppler/CairoRescaleBox.cc	2017-04-17 15:04:22.158641196 -0700
++++ poppler-latest-patched/poppler/CairoRescaleBox.cc	2017-04-17 15:05:47.027905938 -0700
+@@ -47,7 +47,7 @@
+ 
+ #include <stdint.h>
+ #include <stdio.h>
+-#include <assert.h>
++//#include <assert.h>
+ #include <stdlib.h>
+ #include <math.h>
+ #include "goo/gmem.h"
+diff -bur poppler-latest/poppler/GfxState.h poppler-latest-patched/poppler/GfxState.h
+--- poppler-latest/poppler/GfxState.h	2017-04-17 15:04:22.158641196 -0700
++++ poppler-latest-patched/poppler/GfxState.h	2017-04-17 15:05:47.027905938 -0700
+@@ -42,7 +42,7 @@
+ #include "Object.h"
+ #include "Function.h"
+ 
+-#include <assert.h>
++//#include <assert.h>
+ #include <map>
+ 
+ class Array;
+diff -bur poppler-latest/poppler/GlobalParams.h poppler-latest-patched/poppler/GlobalParams.h
+--- poppler-latest/poppler/GlobalParams.h	2017-04-17 15:04:22.162641069 -0700
++++ poppler-latest-patched/poppler/GlobalParams.h	2017-04-17 15:05:47.027905938 -0700
+@@ -39,7 +39,7 @@
+ #pragma interface
+ #endif
+ 
+-#include <assert.h>
++//#include <assert.h>
+ #include "poppler-config.h"
+ #include <stdio.h>
+ #include "goo/gtypes.h"
+diff -bur poppler-latest/poppler/GlobalParamsWin.cc poppler-latest-patched/poppler/GlobalParamsWin.cc
+--- poppler-latest/poppler/GlobalParamsWin.cc	2017-04-17 15:04:22.162641069 -0700
++++ poppler-latest-patched/poppler/GlobalParamsWin.cc	2017-04-17 15:05:47.027905938 -0700
+@@ -30,7 +30,7 @@
+ #include <string.h>
+ #include <stdio.h>
+ #include <ctype.h>
+-#include <assert.h>
++//#include <assert.h>
+ 
+ #include "goo/gmem.h"
+ #include "goo/GooString.h"
+diff -bur poppler-latest/poppler/Object.h poppler-latest-patched/poppler/Object.h
+--- poppler-latest/poppler/Object.h	2017-04-17 15:04:22.162641069 -0700
++++ poppler-latest-patched/poppler/Object.h	2017-04-17 15:08:47.562058012 -0700
+@@ -48,21 +48,21 @@
+     if (unlikely(type != wanted_type)) { \
+         error(errInternal, 0, "Call to Object where the object was type {0:d}, " \
+                  "not the expected type {1:d}", type, wanted_type); \
+-        abort(); \
++        exit(-1); \
+     }
+ 
+ #define OBJECT_2TYPES_CHECK(wanted_type1, wanted_type2) \
+     if (unlikely(type != wanted_type1) && unlikely(type != wanted_type2)) { \
+         error(errInternal, 0, "Call to Object where the object was type {0:d}, " \
+ 	      "not the expected type {1:d} or {2:d}", type, wanted_type1, wanted_type2); \
+-        abort(); \
++        exit(-1); \
+     }
+ 
+ #define OBJECT_3TYPES_CHECK(wanted_type1, wanted_type2, wanted_type3)	\
+     if (unlikely(type != wanted_type1) && unlikely(type != wanted_type2) && unlikely(type != wanted_type3)) { \
+         error(errInternal, 0, "Call to Object where the object was type {0:d}, " \
+ 	      "not the expected type {1:d}, {2:d} or {3:d}", type, wanted_type1, wanted_type2, wanted_type3); \
+-        abort(); \
++        exit(-1); \
+     }
+ 
+ class XRef;
+diff -bur poppler-latest/poppler/PageLabelInfo.cc poppler-latest-patched/poppler/PageLabelInfo.cc
+--- poppler-latest/poppler/PageLabelInfo.cc	2017-04-17 15:04:22.166640941 -0700
++++ poppler-latest-patched/poppler/PageLabelInfo.cc	2017-04-17 15:05:47.027905938 -0700
+@@ -16,7 +16,7 @@
+ #include <limits.h>
+ #include <stdlib.h>
+ #include <stdio.h>
+-#include <assert.h>
++//#include <assert.h>
+ 
+ #include "PageLabelInfo.h"
+ #include "PageLabelInfo_p.h"
+diff -bur poppler-latest/poppler/PageLabelInfo.h poppler-latest-patched/poppler/PageLabelInfo.h
+--- poppler-latest/poppler/PageLabelInfo.h	2017-04-17 15:04:22.166640941 -0700
++++ poppler-latest-patched/poppler/PageLabelInfo.h	2017-04-17 15:05:47.027905938 -0700
+@@ -14,7 +14,7 @@
+ #include <stdlib.h>
+ #include <stdio.h>
+ #include <ctype.h>
+-#include <assert.h>
++//#include <assert.h>
+ 
+ #include "goo/gtypes.h"
+ #include "goo/GooList.h"
+diff -bur poppler-latest/poppler/poppler-config.h.in poppler-latest-patched/poppler/poppler-config.h.in
+--- poppler-latest/poppler/poppler-config.h.in	2017-04-17 15:04:22.166640941 -0700
++++ poppler-latest-patched/poppler/poppler-config.h.in	2017-04-17 15:05:47.027905938 -0700
+@@ -25,6 +25,8 @@
+ #ifndef POPPLER_CONFIG_H
+ #define POPPLER_CONFIG_H
+ 
++#define assert(x) if(!(x)){exit(0);}
++
+ #include <stdio.h>
+ 
+ // We duplicate some of the config.h #define's here since they are
+diff -bur poppler-latest/poppler/StructElement.cc poppler-latest-patched/poppler/StructElement.cc
+--- poppler-latest/poppler/StructElement.cc	2017-04-17 15:04:22.166640941 -0700
++++ poppler-latest-patched/poppler/StructElement.cc	2017-04-17 15:05:47.027905938 -0700
+@@ -22,7 +22,7 @@
+ #include "PDFDoc.h"
+ #include "Dict.h"
+ 
+-#include <assert.h>
++//#include <assert.h>
+ 
+ class GfxState;
+ 
+diff -bur poppler-latest/poppler/StructTreeRoot.cc poppler-latest-patched/poppler/StructTreeRoot.cc
+--- poppler-latest/poppler/StructTreeRoot.cc	2017-04-17 15:04:22.166640941 -0700
++++ poppler-latest-patched/poppler/StructTreeRoot.cc	2017-04-17 15:05:47.027905938 -0700
+@@ -20,7 +20,7 @@
+ #include "Object.h"
+ #include "Dict.h"
+ #include <set>
+-#include <assert.h>
++//#include <assert.h>
+ 
+ 
+ StructTreeRoot::StructTreeRoot(PDFDoc *docA, Dict *structTreeRootDict):
+diff -bur poppler-latest/splash/Splash.cc poppler-latest-patched/splash/Splash.cc
+--- poppler-latest/splash/Splash.cc	2017-04-17 15:04:22.178640558 -0700
++++ poppler-latest-patched/splash/Splash.cc	2017-04-17 15:05:47.027905938 -0700
+@@ -34,7 +34,7 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <limits.h>
+-#include <assert.h>
++//#include <assert.h>
+ #include <math.h>
+ #include "goo/gmem.h"
+ #include "goo/GooLikely.h"
+diff -bur poppler-latest/test/perf-test.cc poppler-latest-patched/test/perf-test.cc
+--- poppler-latest/test/perf-test.cc	2017-04-17 15:04:22.182640430 -0700
++++ poppler-latest-patched/test/perf-test.cc	2017-04-17 15:05:47.027905938 -0700
+@@ -34,7 +34,7 @@
+ // Not enabled by default.
+ //#define COPY_FILE 1
+ 
+-#include <assert.h>
++//#include <assert.h>
+ #include <stdio.h>
+ #include <stdarg.h>
+ #include <ctype.h>
+diff -bur poppler-latest/test/perf-test-preview-win.cc poppler-latest-patched/test/perf-test-preview-win.cc
+--- poppler-latest/test/perf-test-preview-win.cc	2017-04-17 15:04:22.182640430 -0700
++++ poppler-latest-patched/test/perf-test-preview-win.cc	2017-04-17 15:05:47.031905805 -0700
+@@ -4,7 +4,7 @@
+ /* This is a preview support for perf-test for Windows */
+ 
+ #include <windows.h>
+-#include <assert.h>
++//#include <assert.h>
+ 
+ #include "SplashBitmap.h"

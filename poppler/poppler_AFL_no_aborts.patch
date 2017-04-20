@@ -455,7 +455,7 @@ diff -bur poppler-latest/utils/pdftocairo.cc poppler-latest-patched/utils/pdftoc
 +void do_stuff(char * filename){
 +//  puts("starting do_stuff");
 +  double pg_w, pg_h, output_w, output_h;
-+  GooString *outputFileName = new GooString("out.svg");
++  GooString *outputFileName = new GooString("/dev/null");
 +  GooString * fileName = new GooString(filename);
 +  PDFDoc * doc = PDFDocFactory().createPDFDoc(*fileName, NULL, NULL);
    if (!doc->isOk()) {
